@@ -1,0 +1,47 @@
+Logistic Regression
+-----------------------
+
+[[149 495]
+ [ 90 888]]
+
+phi: 0.192346421175206
+
+X_test = testset.review
+y_test = testset.kano_labels
+
+y_pred = predict(X_test, y_test, terms_sorted, M)
+
+print("Accuracy: ", accuracy_score(y_test, y_pred))
+print("Precision, Recall, f1 Score, Support: ", precision_recall_fscore_support(y_test, y_pred, average='macro', zero_division=1))
+
+pred_corr = []
+for pred, label in zip(y_pred, y_test):
+  pred_corr.append(pred == label)
+print("Phi Coefficient: ", matthews_corrcoef(pred_corr, testset.equal))
+print(confusion_matrix(pred_corr, testset.equal))
+
+
+Keyword-driven
+-----------------------
+
+[[169 553]
+ [ 70 830]]
+
+phi: 0.219140575663304
+
+
+X_test = testset.review
+y_test = testset.kano_labels
+
+y_pred = predict(X_train, y_train, X_test, y_test, tfidf)
+
+print("Accuracy: ", accuracy_score(y_test, y_pred))
+print("Precision, Recall, f1 Score, Support: ", precision_recall_fscore_support(y_test, y_pred, average='macro', zero_division=1))
+
+pred_corr = []
+for pred, label in zip(y_pred, y_test):
+  pred_corr.append(pred == label)
+print("Phi Coefficient: ", matthews_corrcoef(pred_corr, testset.equal))
+print(confusion_matrix(pred_corr, testset.equal))
+
+
